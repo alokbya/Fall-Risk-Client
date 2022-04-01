@@ -1,0 +1,35 @@
+form {
+    display: grid;
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: center;
+    background-color: #D1D1D1;
+    padding: 20px 30px;
+    border: 2px solid black;
+}
+
+input {
+    margin: 10px 0px;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 15px;
+}
+
+input::selection {
+    box-shadow: 10px 10px 10px 10px;
+}
+
+button {
+    margin: 10px 0px;
+    margin-top: 40px;
+    padding: 15px;
+    font-size: 20px;
+    background-color: #7882A4;
+}
+
+.password-feedback {
+    text-align: left;
+    margin: 1px;
+    padding:5px;
+    font-size: 14px;
+}

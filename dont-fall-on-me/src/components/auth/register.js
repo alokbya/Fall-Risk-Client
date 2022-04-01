@@ -1,47 +1,56 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useContext } from 'react'
-
 import ValidatePassword from './validatePassword';
-
 import { UserContext } from '../../context/global/userState';
+import { useCookies } from 'react-cookie';
 
 import '../../styles/auth/register.css';
 
-const Register = () => {
+const Register = ({ first_name, setFirstName, 
+                    last_name, setLastName,
+                    email, setEmail,
+                    title, setTitle,
+                    password, setPassword,
+                    repeatPassword, setRepeatPassword }) => {
 
     const navigate = useNavigate();
 
-    const [ first_name, setFirstName ] = useState();
-    const [ last_name, setLastName ] = useState();
-    const [ email, setEmail ] = useState();
-    const [ title, setTitle ] = useState();
-    const [ password, setPassword ] = useState();
-    const [ repeatPassword, setRepeatPassword ] = useState();
     const { globalUser, updateUser, loginUser, logoutUser } = useContext(UserContext);
-
-    const signUp = async () => {
+    const [ cookies, setCookies ] = useCookies(['session']);
+    const signUp = async (event) => {
+        event.preventDefault();
         try {
             const user = {
                 first_name,
                 last_name,
-                email,
+                email: encodeURI(email),
                 title,
                 password
             };
-            const endpoint = process.env.REACT_APP_API;
-            endpoint.replace('"', '');
+            const encoder = new TextEncoder();
+            const payload = encoder.encode(user);
             const response = await fetch('http://localhost:3001/auth/register', {
                 method: 'POST',
                 body: JSON.stringify(user),
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+            })
+            .then( async (response) => {
+                if (response.status === 201) {
+                    let res_user = await response.json();
+                    loginUser(res_user);
+                    navigate('/');
+                } else if (response.status === 409) {
+                    // handle invalid auth
+                }
+            })
+            .catch( error => {
+                console.error(error);
+                alert(error);
             });
-            if (response.status === 201) {
-                const user = await response.json();
-                loginUser(user)
-                navigate('/');
-            }
+            
         } catch (error) {
             console.log('error signing up:', error);
             alert(error);
@@ -55,24 +64,28 @@ const Register = () => {
             <input
                 className='auth-form sign-up first-name'
                 type='text'
+                value={first_name}
                 placeholder='First Name'
                 onChange={e => setFirstName(e.target.value)}
             ></input>
             <input
                 className='auth-form sign-up last-name'
                 type='text'
+                value={last_name}
                 placeholder='Last Name'
                 onChange={e => setLastName(e.target.value)}
             ></input>
             <input
                 className='auth-form sign-up email'
                 type='email'
+                value={email}
                 placeholder='Email'
                 onChange={e => setEmail(e.target.value)}
             ></input>
              <input
                 className='auth-form sign-up title'
                 type='text'
+                value={title}
                 placeholder='Title (e.g. Physical Therapist)'
                 onChange={e => setTitle(e.target.value)}
             ></input>

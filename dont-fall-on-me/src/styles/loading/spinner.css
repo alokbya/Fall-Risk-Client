@@ -1,0 +1,10 @@
+.spinner {
+    display: flex;
+    margin: 20px auto;
+    max-width: 500px;
+    text-align: center;
+}
+.loading {
+    font-size: 28px;
+    margin: 10px 10px;
+}
