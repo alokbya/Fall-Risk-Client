@@ -10,9 +10,7 @@ const Organization = () => {
 
   // get organizations related to user
   const getOrgs = async () => {
-    const response = await fetch('http://localhost:3001/orgs', {
-      method: 'GET',
-    });
+    const response = await fetch('http://localhost:3001/orgs');
     if (response.status === 200) {
       const orgs = await response.json();
       setOrgs(orgs);

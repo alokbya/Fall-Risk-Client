@@ -14,7 +14,7 @@ const Home = () => {
     const [ loading, setLoading ] = useState(true);
 
     const refresh = async () => {
-      const response = fetch('http://localhost:3001/auth/refresh', {
+      const response = fetch('http://localhost:3001/refresh', {
             credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
@@ -39,9 +39,9 @@ const Home = () => {
 
     useEffect(() => {
         setLoading(true);
-        if (cookies['session'] !== 'undefined' && Object.keys(globalUser).length === 0){
+        if (cookies['session'] !== undefined && Object.keys(globalUser).length === 0){
           refresh();
-        } else if (Object.keys(globalUser).length === 0) {
+        } else if (cookies['session'] === undefined && Object.keys(globalUser).length === 0) {
             navigate('/auth');
         } else {
           setLoading(false);
