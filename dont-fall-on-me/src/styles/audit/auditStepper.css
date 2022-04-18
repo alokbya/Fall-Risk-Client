@@ -1,8 +1,6 @@
-.stepper-container {
+/* .stepper-container {
     display: flex;
     flex-direction: column;
-    /* height: 100vh; */
-    /* border: 1px solid red; */
     justify-content: center;
     max-width: 750px;
     margin: 0 auto;
@@ -22,9 +20,6 @@
     align-items: stretch;
     justify-self: flex-end;
     margin-top: 20px;
-    /* position: absolute;
-    bottom: 0;
-    width: 100%; */
 }
 
 .stepper-button {
@@ -35,7 +30,6 @@
 .back {
     display: flex;
     justify-content: space-between;
-    /* align-items: space-between; */
 }
 
 .back:hover {
@@ -52,4 +46,9 @@
     font-size: 24px;
     justify-content: flex-start;
     align-items: flex-end;
+}*/
+
+.audit-stepper {
+    max-width: 750px;
+    margin: 0 auto;
 }

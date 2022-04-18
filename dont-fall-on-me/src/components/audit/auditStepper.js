@@ -6,6 +6,8 @@ import RoomAuditStepper from './roomAuditStepper';
 import { useNavigate } from 'react-router-dom';
 import { MdKeyboardBackspace } from 'react-icons/md';
 
+import '../../styles/audit/auditStepper.css';
+
 const AuditStepper = () => {
     const { globalUser, loginUser, logoutUser, updateUnit, updateAuditType } = useContext(UserContext);
     const [ cookies, setCookie, removeCookie ] = useCookies(['session']);
@@ -47,13 +49,14 @@ const AuditStepper = () => {
 
   return (
       <>
-        <span className='return-home back'>
-            <MdKeyboardBackspace onClick={returnHome} size='30px' />
-            Go back
-        </span>
-                
-        { globalUser.auditType === 'room' ? <RoomAuditStepper rooms={rooms} /> : '' }
-        { globalUser.auditType === 'epic' ? <EpicAuditStepper rooms={rooms} /> : '' }
+        <div className='audit-stepper'>
+            <span className='return-home back'>
+                <MdKeyboardBackspace onClick={returnHome} size='30px' />
+                Go back
+            </span>
+            { globalUser.auditType === 'room' ? <RoomAuditStepper rooms={rooms} /> : '' }
+            { globalUser.auditType === 'epic' ? <EpicAuditStepper rooms={rooms} /> : '' }
+        </div>
       </>
   )
 }

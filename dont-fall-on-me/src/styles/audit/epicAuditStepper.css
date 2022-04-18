@@ -14,5 +14,5 @@ button {
     color: white;
     border: none;
     bottom: 0;
-    position: fixed;
+    align-self: center;
 }

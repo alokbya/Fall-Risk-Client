@@ -1,6 +1,8 @@
 .audit-room {
     display: flex;
     flex-direction: column;
+    height: 60vh;
+    border: 1px solid red;
 }
 
 .room-name {
@@ -21,24 +23,26 @@
 
 .counter-buttons {
     display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border: 1px solid green;
+    height: 100%;
 }
 
 .decrement-question {
     background-color: white;
     border: none;
     text-align: left;
-    bottom: 60px;
-    width: 50%;
-    left: 0px;
-    position: fixed;
 }
 
 .increment-question {
     background-color: white;
     border: none;
     text-align: right;
-    width: 50%;
-    bottom: 60px;
-    right: 0px;
-    position: fixed;
+    justify-self: flex-end;
+    align-self: flex-end;
+}
+
+button {
+    border: none;
 }
