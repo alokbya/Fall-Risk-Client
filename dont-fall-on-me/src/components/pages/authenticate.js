@@ -15,6 +15,7 @@ const Authenticate = () => {
 
     const toggleAuth = () => {
       setRegister(!register);
+      setPassword('');
     }
 
     return (

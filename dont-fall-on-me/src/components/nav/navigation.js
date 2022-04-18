@@ -35,18 +35,18 @@ const Navigation = () => {
           <Navbar.Brand>Don't Fall on Me</Navbar.Brand>
             {Object.keys(globalUser).length > 0 && globalUser.loggedIn ? 
               <> 
-              <Nav.Item><span>Welcome, {globalUser.user.first_name}</span></Nav.Item>
+              {/* <Nav.Item><span>Welcome, {globalUser.user.first_name}</span></Nav.Item> */}
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-              <Nav.Link>Home</Nav.Link>
-              <Nav.Link>Data</Nav.Link>
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+              {/* <Nav.Link>Home</Nav.Link>
+              <Nav.Link>Data</Nav.Link> */}
+              {/* <NavDropdown title="More..." id="basic-nav-dropdown"> */}
+                {/* <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                <NavDropdown.Divider /> 
+                <NavDropdown.Divider />  */}
                 <NavDropdown.Item href="#action/3.1"><a className='logout' onClick={signOut}>Logout</a></NavDropdown.Item>
-              </NavDropdown>
+              {/* </NavDropdown> */}
               </Nav>
           </Navbar.Collapse>
               </> : '' }

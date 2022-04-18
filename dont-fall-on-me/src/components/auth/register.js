@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useContext } from 'react'
+import { useSearchParams } from 'react-router-dom';
 import ValidatePassword from './validatePassword';
 import { UserContext } from '../../context/global/userState';
 import { useCookies } from 'react-cookie';
@@ -17,6 +18,8 @@ const Register = ({ first_name, setFirstName,
 
     const { globalUser, updateUser, loginUser, logoutUser } = useContext(UserContext);
     const [ cookies, setCookies ] = useCookies(['session']);
+    const [ search, setSearch ] = useSearchParams();
+
     const signUp = async (event) => {
         event.preventDefault();
         try {
@@ -25,7 +28,8 @@ const Register = ({ first_name, setFirstName,
                 last_name,
                 email: encodeURI(email),
                 title,
-                password
+                password,
+                org_id: search.get('org'),
             };
             const encoder = new TextEncoder();
             const payload = encoder.encode(user);
@@ -43,7 +47,9 @@ const Register = ({ first_name, setFirstName,
                     loginUser(res_user);
                     navigate('/');
                 } else if (response.status === 409) {
-                    // handle invalid auth
+                    alert('User already exists');
+                } else if (response.status === 400) {
+                    alert('All inputs are required');
                 }
             })
             .catch( error => {
@@ -59,6 +65,7 @@ const Register = ({ first_name, setFirstName,
 
     return (
       <>
+        {search.get('org')}
         <form className='sign-up'>
             <h2 className='label'>Sign Up</h2>
             <input

@@ -1,0 +1,18 @@
+.room-name {
+    text-align: center;
+    border: 1px solid red;
+    justify-self: center;
+    align-self: center;
+}
+
+.audit-questions {
+    margin: 20px 0px;
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.counter-buttons {
+    display: flex;
+}

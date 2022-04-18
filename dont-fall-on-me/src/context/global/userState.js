@@ -32,12 +32,42 @@ export const UserProvider = ({children}) => {
         })
     };
 
+    const updateUnit = (unit) => {
+        dispatch({
+            type: 'UPDATE_UNIT',
+            payload: {
+                unit: unit,
+            },
+        });
+    }
+
+    const updateRoom = (room) => {
+        dispatch({
+            type: 'UPDATE_ROOM',
+            payload: {
+                room: room,
+            },
+        });
+    }
+
+    const updateAuditType = (auditType) => {
+        dispatch({
+            type: 'UPDATE_AUDIT_TYPE',
+            payload: {
+                auditType: auditType,
+            },
+        });
+    }
+
     return (
         <UserContext.Provider value={{
             globalUser: state,
             updateUser,
             loginUser,
             logoutUser,
+            updateUnit,
+            updateRoom,
+            updateAuditType,
         }}>
             {children}    
         </UserContext.Provider>

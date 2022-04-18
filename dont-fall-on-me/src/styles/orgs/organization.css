@@ -1,0 +1,52 @@
+.organization {
+    display: flex;
+    background-color: #5F9EA0;
+    max-width: 550px;
+    border: 1px solid black;
+    margin: 20px auto;
+    justify-content: flex-start;
+    padding: 20px 10px;
+    border-radius: 20px;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 100;
+    
+    flex-direction: column;
+}
+
+.org-name {
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+.date-created {
+    font-size: 18px;
+}
+.org-header {
+    display: flex;
+    flex-direction: row-reverse;
+}
+.org-header-container {
+    width: 100%;
+    justify-content: flex-end;
+    display: flex;
+    /* flex-direction: row-reverse; */
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+}
+.header-item {
+    align-self: center;
+    padding: 0px 20px;
+}
+.delete-icon {
+    align-self: center;
+    justify-self: center;
+    margin: 20px;
+    border: 1px dotted black;
+}
+
+.no-units-found {
+    justify-self: center;
+    margin-top: 10px;
+}

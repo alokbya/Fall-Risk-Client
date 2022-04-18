@@ -6,6 +6,8 @@ import { UserProvider } from './context/global/userState';
 import Authenticate from './components/pages/authenticate';
 import Home from './components/pages/home';
 import Navigation from './components/nav/navigation';
+import UnitDetail from './components/units/unitDetail';
+import AuditStepper from './components/audit/auditStepper';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />}/>
           <Route path='/auth' element={<Authenticate />}/>
+          {/* <Route path='/unit' element={<UnitDetail/>}/> */}
+          <Route path='/record' element={<AuditStepper/>}/>
         </Routes>
       </UserProvider>
     </>

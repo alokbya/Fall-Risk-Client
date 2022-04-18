@@ -1,0 +1,13 @@
+.question-set-name {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.question-set-description {
+    margin: 10px auto;
+}
+
+.question-set-name-input {
+    min-width: 350px;
+}

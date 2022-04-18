@@ -1,0 +1,25 @@
+.fall-risk-assessed-last-documented{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.fra-section {
+}
+
+.fra-item {
+    background-color: grey;
+
+}
+
+.fra-selected-high {
+    background-color: maroon;
+}
+
+.fra-selected-low-mod {
+    background-color: yellow;
+}
+
+.question-set-description {
+    margin-bottom: 20px;
+}

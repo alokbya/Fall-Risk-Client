@@ -1,0 +1,15 @@
+.stepper-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-self: stretch;
+    justify-content: stretch;
+}
+button {
+    width: 100%;
+    font-size: 24px;
+    font-weight: bold;
+}
+.save-audit {
+    background-color: forestgreen;
+    color: white;
+}

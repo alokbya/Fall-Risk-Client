@@ -1,0 +1,55 @@
+.stepper-container {
+    display: flex;
+    flex-direction: column;
+    /* height: 100vh; */
+    /* border: 1px solid red; */
+    justify-content: center;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.stepper-progress {
+    margin-top: 20px;
+}
+
+.questions {
+    margin: 20px 0px;
+    text-align: center;
+}
+
+.stepper-btns {
+    display: flex;
+    align-items: stretch;
+    justify-self: flex-end;
+    margin-top: 20px;
+    /* position: absolute;
+    bottom: 0;
+    width: 100%; */
+}
+
+.stepper-button {
+    width: 50%;
+    margin: 0px 10px;
+}
+
+.back {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: space-between; */
+}
+
+.back:hover {
+    cursor: pointer;
+}
+
+.room-name {
+    font-size: 28px;
+    text-align: center;
+    color: red;
+}
+
+.back {
+    font-size: 24px;
+    justify-content: flex-start;
+    align-items: flex-end;
+}

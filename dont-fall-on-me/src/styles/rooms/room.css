@@ -1,0 +1,19 @@
+.room-container {
+    background-color: coral;
+    /* max-width: 500px; */
+    min-width: 350px;
+    margin: 10px auto;
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.room-qs-data {
+    display: flex;
+    flex-direction: row;
+ }
+
+ .room-qs-data-item {
+     padding: 0 5px;
+ }
