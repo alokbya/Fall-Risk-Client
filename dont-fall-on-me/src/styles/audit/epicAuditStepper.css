@@ -12,4 +12,7 @@ button {
 .save-audit {
     background-color: forestgreen;
     color: white;
+    border: none;
+    bottom: 0;
+    position: fixed;
 }

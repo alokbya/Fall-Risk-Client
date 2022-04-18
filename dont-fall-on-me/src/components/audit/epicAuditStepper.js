@@ -48,20 +48,7 @@ const EpicAuditStepper = ({ rooms }) => {
         <>
             <h2>Epic Audit Stepper</h2>
             <EpicAuditRooms rooms={rooms} />
-            {/* <p>rooms: {rooms.length}</p>
-            <p>room counter: {roomCounter}</p>
-            <p>tracker: {JSON.stringify(roomTracker)}</p>
-            <div className='stepper-buttons'>
-                <button onClick={decrementRoomCounter}>Previous</button>
-                <button onClick={incrementRoomCounter}>Next</button>
-            </div> */}
             <button className='save-audit' onClick={saveAuditProgress}>Save</button>
-            {/* <span className='back return-home' onClick={returnHome}>
-                <MdKeyboardBackspace size='30px' />
-                <span className='room-name'>
-                    {globalUser.room.name}
-                </span>
-            </span> */}
         </>
     )
 }

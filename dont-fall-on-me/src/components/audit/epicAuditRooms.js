@@ -34,7 +34,7 @@ const EpicAuditRooms = ({ rooms }) => {
   return (
       <>
         <div className='audit-rooms'>
-          {JSON.stringify(roomsTracker)}
+          {/* {JSON.stringify(roomsTracker)} */}
           {/* {JSON.stringify(roomsTracker)} */}
             {roomCollection.length > 0 ? <EpicAuditRoom room={roomCollection[roomCounter]} incrementRoom={incrementRoom} decrementRoom={decrementRoom} setRoomsTracker={setRoomsTracker} roomsTracker={roomsTracker} /> : ''}
             {/* {roomCollection.map(room => <EpicAuditRoom room={room} incrementRoom={incrementRoom} decrementRoom={decrementRoom} />)} */}

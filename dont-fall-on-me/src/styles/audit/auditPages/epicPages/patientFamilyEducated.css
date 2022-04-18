@@ -1,21 +1,22 @@
 .fra-container {
     display: flex;
+    flex-direction: column;
+}
+
+.fra-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .fra-selections {
     display: flex;
-    flex-direction: column;
-    margin: 20px 0px;
+    flex-direction: row;
 }
 
-.fra-date {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.fra-date-picker {
-    display: flex;
+.fra-item {
+    background-color: grey;
 }
 
 .fra-selected-true {
