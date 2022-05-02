@@ -1,18 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import EpicAuditRoom from './epicAuditRoom'
-
+import { UserContext } from '../../context/global/userState';
 const EpicAuditRooms = ({ rooms }) => {
 
+  const { globalUser } = useContext(UserContext);
   const [ roomCollection, setRoomCollection ] = useState([]);
   const [ roomCounter, setRoomCounter ] = useState(0);
   const [ roomsTracker, setRoomsTracker ] = useState({test:'test'});
+  const [ globalRoomData, setGlobalRoomData ] = useState([]);
 
   const incrementRoom = () => {
-    setRoomCounter(roomCounter >= roomCollection.length - 1 ? roomCounter : roomCounter + 1);
+    if (roomCounter === roomCollection.length - 1) {
+      setRoomCounter(roomCollection.length - 1);
+    } else {
+      setRoomCounter(roomCounter + 1);
+    }
+    // setRoomCounter(roomCounter >= roomCollection.length - 1 ? roomCounter : roomCounter + 1);
   }
 
   const decrementRoom = () => {
-    setRoomCounter(roomCounter <= 0 ? roomCounter : roomCounter - 1);
+    if (roomCounter === 0) {
+      setRoomCounter(0);
+    } else {
+      setRoomCounter(roomCounter - 1);
+    }
+    // setRoomCounter(roomCounter <= 0 ? roomCounter : roomCounter - 1);
   }
 
   useEffect(() => {
@@ -34,9 +46,14 @@ const EpicAuditRooms = ({ rooms }) => {
   return (
       <>
         <div className='audit-rooms'>
+          {/* {JSON.stringify(globalUser.unit.name)} */}
+          {Object.keys(globalRoomData).length === 0 ? 'NOTHING' : `GLOBAL: ${JSON.stringify(globalRoomData)}`}
+          <br></br>
+          <br></br>
+          {/* {JSON.stringify(rooms)} */}
           {/* {JSON.stringify(roomsTracker)} */}
           {/* {JSON.stringify(roomsTracker)} */}
-            {roomCollection.length > 0 ? <EpicAuditRoom room={roomCollection[roomCounter]} incrementRoom={incrementRoom} decrementRoom={decrementRoom} setRoomsTracker={setRoomsTracker} roomsTracker={roomsTracker} /> : ''}
+            {roomCollection.length > 0 ? <EpicAuditRoom unitName={globalUser.unit.name} globalRoomData={globalRoomData} setGlobalRoomData={setGlobalRoomData} room={roomCollection[roomCounter]} rooms={rooms} roomCounter={roomCounter} incrementRoom={incrementRoom} decrementRoom={decrementRoom} setRoomsTracker={setRoomsTracker} roomsTracker={roomsTracker} /> : ''}
             {/* {roomCollection.map(room => <EpicAuditRoom room={room} incrementRoom={incrementRoom} decrementRoom={decrementRoom} />)} */}
         </div>
       </>

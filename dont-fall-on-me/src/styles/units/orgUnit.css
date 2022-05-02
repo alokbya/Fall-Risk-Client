@@ -1,0 +1,42 @@
+.org-unit-list-item {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin: 5px 0px;
+}
+
+.org-unit-name {
+    margin-right: 10px;
+    font-weight: bold
+}
+
+.org-unit-joined {
+    display: flex;
+    align-items: center;
+    background-color: green;
+    padding: 0px 10px;
+    border-radius: 10px;
+    color: white;
+    align-items: center;
+}
+
+.org-unit-joined:hover {
+    cursor: pointer;
+}
+
+.org-unit-join {
+    display: flex;
+    align-items: center;
+    background-color: #EE5007;
+    padding: 0px 10px;
+    border-radius: 10px;
+    color: white;
+}
+
+.org-unit-join:hover {
+    cursor: pointer;
+}
+
+.icon {
+    margin-left: 5px;
+}

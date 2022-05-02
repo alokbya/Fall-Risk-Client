@@ -10,9 +10,16 @@ button {
     font-weight: bold;
 }
 .save-audit {
-    background-color: forestgreen;
+    background-color: #F8CB2E;
     color: white;
     border: none;
     bottom: 0;
     align-self: center;
+}
+
+.room-name {
+    font-size: 28px;
+    font-family: 'Work Sans';
+    font-weight: bold;
+    margin-bottom: 20px;
 }

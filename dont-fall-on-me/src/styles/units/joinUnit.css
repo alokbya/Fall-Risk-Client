@@ -1,0 +1,35 @@
+.join-unit-form {
+    display: flex;
+    box-shadow: 5px 5px 10px black;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: rgba(255,255,255, 0.9);
+}
+
+.join-unit-inputs {
+    display: flex;
+    flex-direction: row;
+}
+
+.join-unit-input {
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid black;
+}
+
+.join-unit-button {
+    max-width: 20%;
+    /* height: 40px; */
+    background-color: #EE5007;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    font-size: 18px;
+    color: white;
+    border-radius: 10px;
+}
+
+.join-unit-orgs {
+    align-self: flex-start;
+}

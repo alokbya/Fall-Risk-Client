@@ -8,14 +8,13 @@ import { MdOutlineAddCircleOutline } from 'react-icons/md';
 
 import '../../styles/orgs/organizations.css';
 
-const Organizations = ({userLoading}) => {
+const Organizations = ({setNoOrg, refresh, userLoading}) => {
 
-  const { globalUser } = useContext(UserContext);
+  const { globalUser, updateUser } = useContext(UserContext);
   const [ orgs, setOrgs ] = useState([]);
   const [ cookies, setCookie, removeCookie ] = useCookies(['session']);
   const [ openAdd, setOpenAdd ] = useState(false);
 
-  let message = "";
   // get organizations related to user
   const getOrgs = async () => {
     const response = await fetch('http://localhost:3001/orgs', {
@@ -26,26 +25,34 @@ const Organizations = ({userLoading}) => {
       }
     });
     if (response.status === 200) {
-      const orgs = await response.json();
-      setOrgs(orgs);
+      const orgs = await response.json(); 
+      setOrgs([orgs]);
+    } else if (response.status === 403) {
+      setNoOrg(true);
     }
   }
 
-  const addOrg = () => {
-    setOpenAdd(!openAdd);
-    message += " test ";
-    const x = openAdd;
-  }
+  // const addOrg = () => {
+  //   setOpenAdd(!openAdd);
+  //   message += " test ";
+  //   const x = openAdd;
+  // }
 
   useEffect(() => {
+    // if (globalUser.user.orgs === undefined) {
+    //   getOrgs();
+    // }
     getOrgs();
-  }, []);
+    // setOrgs(...globalUser.user.orgs);
+  }, [orgs]);
     return (
         <>
           <div className='org-banner'>
-          
+          {/* {JSON.stringify(globalUser.user)} */}
+          <br></br>
+          {/* {`${Array.isArray(orgs)}`} */}
           </div>
-          {orgs.length === 0 ? '' : orgs.map(org => <Organization key={org._id} className="organizations add-org" org={org} parentOrgs={orgs} setParentOrgs={setOrgs} />)}
+          {orgs.length === 0 ? 'NO ORGS' : orgs.map(org => <Organization refresh={refresh} className="organizations add-org" org={org} parentOrgs={orgs} setParentOrgs={setOrgs} />)}
             {/* <div className="organizations">
                 <div className="organizations org-header">
                     <span className="organizations org-title">Organizations</span>

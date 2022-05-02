@@ -1,27 +1,51 @@
 .fra-container {
     display: flex;
+    /* margin-top: 50px; */
+    align-self: center;
+    justify-self: center;
 }
 
 .fra-selections {
     display: flex;
     flex-direction: column;
-    margin: 20px 0px;
-}
-
-.fra-date {
-    display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
 }
 
-.fra-date-picker {
+.fra-date-time {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+.fra-date-picker {
+    min-width: 300px;
+    border: 1px solid black;
+}
+.fra-time-picker {
+    min-width: 300px;
+    border: 1px solid black;
 }
 
-.fra-selected-true {
-    background-color: forestgreen;
+.fra-header {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: bold;
 }
 
-.fra-selected-false {
-    background-color: maroon;
+.fra-label {
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.fra-radio {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.date-time-header {
+    /* padding-top: 10px; */
 }

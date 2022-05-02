@@ -2,15 +2,23 @@
     display: flex;
     flex-direction: column;
     height: 60vh;
-    border: 1px solid red;
+    /* border: 1px solid red; */
+    /* border: 5px solid #295689; */
+
+    justify-content: center;
+    align-items: center;
+    padding: 0px 15px;
 }
 
 .room-name {
     text-align: center;
-    border: 1px solid red;
+    color: #006E7F;
     justify-self: center;
     align-self: center;
     width: 100%;
+    font-weight: bold;
+    z-index: -1;
+    /* text-decoration: underline; */
 }
 
 .audit-questions {
@@ -25,24 +33,48 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    border: 1px solid green;
+    /* border: 1px solid green; */
     height: 100%;
 }
 
 .decrement-question {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
     border: none;
     text-align: left;
+    /* z-index: -100; */
 }
 
 .increment-question {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
     border: none;
     text-align: right;
     justify-self: flex-end;
     align-self: flex-end;
+    /* z-index: -100; */
 }
 
-button {
-    border: none;
+.stepper-vital-buttons {
+    margin: 0px auto;
+    justify-self: center;
+    align-items: center;
+}
+
+footer {
+    position: fixed;
+    /* left: 0; */
+    bottom: 0;
+    width: 100%;
+    max-width: 750px;
+    justify-self: center;
+    align-self: center;
+    margin: 0px auto;
+    /* z-index: -10; */
+}
+
+#save-audit-btn {
+    /* border-left: 5px solid #295689;
+    border-right: 5px solid #295689;
+    border-bottom: 5px solid #295689; */
+    background-color: #F8CB2E;
+    color: #006E7F;
 }

@@ -31,8 +31,6 @@ const Register = ({ first_name, setFirstName,
                 password,
                 org_id: search.get('org'),
             };
-            const encoder = new TextEncoder();
-            const payload = encoder.encode(user);
             const response = await fetch('http://localhost:3001/auth/register', {
                 method: 'POST',
                 body: JSON.stringify(user),
@@ -50,6 +48,8 @@ const Register = ({ first_name, setFirstName,
                     alert('User already exists');
                 } else if (response.status === 400) {
                     alert('All inputs are required');
+                } else if (response.status === 406) {
+                    alert('Invalid Organization ID')
                 }
             })
             .catch( error => {
@@ -65,7 +65,7 @@ const Register = ({ first_name, setFirstName,
 
     return (
       <>
-        {search.get('org')}
+        {/* {search.get('org')} */}
         <form className='sign-up'>
             <h2 className='label'>Sign Up</h2>
             <input

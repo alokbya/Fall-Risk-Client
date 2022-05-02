@@ -1,12 +1,12 @@
 .organization {
     display: flex;
-    background-color: #5F9EA0;
+    background-color: #006E7F;
     max-width: 550px;
     border: 1px solid black;
     margin: 20px auto;
     justify-content: flex-start;
     padding: 20px 10px;
-    border-radius: 20px;
+    /* border-radius: 20px; */
     font-family: 'Archivo', sans-serif;
     font-weight: 100;
     
@@ -14,7 +14,7 @@
 }
 
 .org-name {
-    font-size: 20px;
+    font-size: 32px;
     color: white;
     font-weight: bold;
 }

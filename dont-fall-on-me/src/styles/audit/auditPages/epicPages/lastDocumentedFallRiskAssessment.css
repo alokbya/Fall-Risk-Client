@@ -4,14 +4,8 @@
     width: 100%;
 }
 
-.fra-item {
-    background-color: grey;
-}
-
-.fra-selected-high {
-    background-color: yellow;
-}
-
-.fra-selected-low-mod {
-    background-color: orange;
+.fra-radio {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }

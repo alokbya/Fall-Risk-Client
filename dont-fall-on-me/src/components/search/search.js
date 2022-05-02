@@ -20,9 +20,10 @@ const Search = ({ filteredUnits, setFilteredUnits, searchQuery, setSearchQuery, 
       <>
         <input
             type='text'
-            placeholder='search...'
+            placeholder='search your units...'
             onChange={filterUnits}
             value={searchQuery}
+            className='unit-search'
         />
       </>
   )

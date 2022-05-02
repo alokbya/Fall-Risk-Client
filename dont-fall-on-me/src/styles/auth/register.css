@@ -9,16 +9,22 @@ form {
     max-width: 500px;
     margin: 20px auto;
     text-align: center;
-    background-color: #D1D1D1;
+    background-color: #006E7F;
     padding: 20px 30px;
-    border: 2px solid black;
+    /* border: 5px solid #EE5007; */
     align-items: center;
+    color: white;
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 input {
     padding: 10px;
     font-size: 20px;
     border-radius: 15px;
+    background-color: white;
+    color: #006E7F;
+    font-weight: bold;
+    border: none;
 }
 
 /* input::selection {
@@ -29,8 +35,12 @@ button {
     margin: 10px 0px;
     margin-top: 40px;
     padding: 15px;
-    font-size: 20px;
-    background-color: #7882A4;
+    font-size: 24px;
+    background-color: #F8CB2E;
+    color: #006E7F;
+    border: none;
+    /* text-decoration: underline; */
+    /* font-style: italic; */
 }
 
 .password-feedback {

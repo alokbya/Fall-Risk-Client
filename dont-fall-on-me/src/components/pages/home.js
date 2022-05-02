@@ -8,10 +8,10 @@ import '../../styles/loading/spinner.css';
 
 const Home = () => {
     const navigate = useNavigate();
-    const { globalUser, loginUser, logoutUser } = useContext(UserContext);
+    const { globalUser, loginUser, logoutUser, updateUnit, updateAuditType } = useContext(UserContext);
     const [ cookies, setCookie, removeCookie ] = useCookies(['session']);
     const [ userLoading, setUserLoading ] = useState(false);
-
+    const [noOrg, setNoOrg] = useState(false);
     const [ loading, setLoading ] = useState(true);
 
     const refresh = async () => {
@@ -27,11 +27,12 @@ const Home = () => {
             if (response.status === 200) {
                 const res_user = await response.json();
                 loginUser(res_user);
-                navigate('/');
+                // navigate('/');
             } else if (response.status === 400) {
                 // handle invalid credentials
             } else if (response.status === 403) {
               logoutUser();
+              navigate('/auth');
             }
             setLoading(false);
             setUserLoading(false);
@@ -43,23 +44,30 @@ const Home = () => {
     }
 
     useEffect(() => {
-        setLoading(true);
-        if (!globalUser.loggedIn) {
-          navigate('/auth');
-        } else if (cookies['session'] !== undefined && Object.keys(globalUser).length === 0){
+        if (cookies['session'] !== undefined && Object.keys(globalUser).length === 0) {
           refresh();
-        } else if (cookies['session'] === undefined && Object.keys(globalUser).length === 0) {
+        } 
+        // else {
+        //   navigate('/auth')
+        // }
+        else if (cookies['session'] === undefined && Object.keys(globalUser).length === 0) {
             navigate('/auth');
-        } else {
-          setLoading(false);
         }
+        else if (noOrg) {
+          setNoOrg(false);
+          navigate('/auth');
+        }
+
+        updateUnit('');
+        updateAuditType('');
     }, [])
     
     return (
       <>
-        { loading ? <div className="spinner"><Spinner animation="border" role="status"><span className="visually-hidden">Loading...</span></Spinner><span className="loading">Loading...</span></div> : <Organizations />
-          
-        }
+        {/* { loading ? <div className="spinner"><Spinner animation="border" role="status"><span className="visually-hidden">Loading...</span></Spinner><span className="loading">Loading...</span></div> : <Organizations refresh={refresh}/> */}
+        {/* { <Organizations refresh={refresh}/> } */}
+        {Object.keys(globalUser !== 0) ? <Organizations setNoOrg={setNoOrg} refresh={refresh} /> : 'NOTHING'}
+        {/* {JSON.stringify(globalUser.user.orgs)} */}
       </>
   )
 }

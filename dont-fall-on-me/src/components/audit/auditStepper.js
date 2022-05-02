@@ -37,12 +37,6 @@ const AuditStepper = () => {
         }
     }
 
-    const returnHome = () => {
-        updateUnit('');
-        updateAuditType('');
-        navigate('/');
-    }
-
     useEffect(() => {
         getRooms();
     }, [])
@@ -50,10 +44,6 @@ const AuditStepper = () => {
   return (
       <>
         <div className='audit-stepper'>
-            <span className='return-home back'>
-                <MdKeyboardBackspace onClick={returnHome} size='30px' />
-                Go back
-            </span>
             { globalUser.auditType === 'room' ? <RoomAuditStepper rooms={rooms} /> : '' }
             { globalUser.auditType === 'epic' ? <EpicAuditStepper rooms={rooms} /> : '' }
         </div>

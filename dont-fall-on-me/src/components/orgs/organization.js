@@ -5,8 +5,9 @@ import { MdDelete } from 'react-icons/md';
 import Units from '../units/units';
 import Search from '../search/search';
 import '../../styles/orgs/organization.css';
+import { deleteOrg } from '../../httpHelpers/httpHelpers.mjs';
 
-const Organization = ({ org, parentOrgs, setParentOrgs }) => {
+const Organization = ({ refresh, org, parentOrgs, setParentOrgs }) => {
 
   const { globalUser } = useContext(UserContext);
   const [ orgs, setOrgs ] = useState([]);
@@ -14,7 +15,7 @@ const Organization = ({ org, parentOrgs, setParentOrgs }) => {
   const [ units, setUnits ] = useState([]);
   const [ filteredUnits, setFilteredUnits ] = useState([]);
 
-  const deleteOrg = async () => {
+  const handleDeleteOrg = async () => {
     const response = await fetch('http://localhost:3001/orgs', {
       method: 'DELETE',
       body: JSON.stringify({ id: org._id }),
@@ -31,13 +32,11 @@ const Organization = ({ org, parentOrgs, setParentOrgs }) => {
   return (
     <>
     {/* {JSON.stringify(globalUser)} */}
+    {/* {JSON.stringify(org)} */}
         <div className='organization'>
             <div className='org-header-container'>
-                <span className="org-name header-item">{org.name}</span>
-                {/* <Search filteredUnits={filteredUnits} setFilteredUnits={setFilteredUnits} items={units}/> */}
-                <Units units={units} setUnits={setUnits}/>
-                {/* <span className='delete-icon header-item' onClick={deleteOrg}><MdDelete className='delete-react-icon' size="30px"/></span> */}
-                {/* <span className='delete-icon header-item' onClick={deleteOrg}><MdDelete className='delete-react-icon' size="30px"/></span> */}
+                <span className="org-name header-item">{org[0].name}</span>
+                <Units refresh={refresh} units={units} setUnits={setUnits}/>
             </div>
         </div>
     </>
