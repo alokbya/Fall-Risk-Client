@@ -46,15 +46,10 @@ const EpicAuditRooms = ({ rooms }) => {
   return (
       <>
         <div className='audit-rooms'>
-          {/* {JSON.stringify(globalUser.unit.name)} */}
           {Object.keys(globalRoomData).length === 0 ? 'NOTHING' : `GLOBAL: ${JSON.stringify(globalRoomData)}`}
           <br></br>
           <br></br>
-          {/* {JSON.stringify(rooms)} */}
-          {/* {JSON.stringify(roomsTracker)} */}
-          {/* {JSON.stringify(roomsTracker)} */}
             {roomCollection.length > 0 ? <EpicAuditRoom unitName={globalUser.unit.name} globalRoomData={globalRoomData} setGlobalRoomData={setGlobalRoomData} room={roomCollection[roomCounter]} rooms={rooms} roomCounter={roomCounter} incrementRoom={incrementRoom} decrementRoom={decrementRoom} setRoomsTracker={setRoomsTracker} roomsTracker={roomsTracker} /> : ''}
-            {/* {roomCollection.map(room => <EpicAuditRoom room={room} incrementRoom={incrementRoom} decrementRoom={decrementRoom} />)} */}
         </div>
       </>
   )

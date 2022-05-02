@@ -16,14 +16,21 @@ const EpicAuditRoom = ({ unitName, globalRoomData, setGlobalRoomData, room, room
     const [ roomChangedForward, setRoomChangedForward ] = useState(false);
     const [ questionCounter, setQuestionCounter ] = useState(0);
 
-    const roomIsComplete = (room) => {
-        return room.id !== undefined &&
+    const updateGlobalRoomData = (localRoomData) => {
+        const remainingRooms = globalRoomData.filter(f => f.id !== localRoomData.id);
+        setGlobalRoomData([...remainingRooms, localRoomData]);
+    }
+
+
+    const isRoomComplete = (room) => {
+        const result = room.id !== undefined &&
         room.name !== undefined &&
         room.fallRiskAssessed !== undefined &&
         room.dateAssessed !== undefined &&
         room.timeAssessed !== undefined &&
         room.lastDoc !== undefined &&
         room.patientFamilyEducated !== undefined;
+        return result;
     }
 
     // increment question
@@ -34,11 +41,27 @@ const EpicAuditRoom = ({ unitName, globalRoomData, setGlobalRoomData, room, room
         if (questionCounter >= 2) {
             if (roomCounter === rooms.length - 1) {
                 setQuestionCounter(2);
+                if (isRoomComplete(localRoomData)) {
+                    updateGlobalRoomData(localRoomData);
+                }
             } else {
+                let currentRoomComplete = isRoomComplete(localRoomData);
+                if (currentRoomComplete) {
+                    let globalRoomToReplace = globalRoomData.filter(r => r.id === localRoomData.id);
+                    if (globalRoomToReplace.length > 0) {
+                        updateGlobalRoomData(localRoomData);
+                    } else {
+                        setGlobalRoomData([...globalRoomData, localRoomData]);
+                    }
+                        incrementRoom();
+                        let newRoomInGlobal = globalRoomData.filter(r => r.id === room._id);
+                        if (newRoomInGlobal.length > 0) {
+                            setLocalRoomData(...newRoomInGlobal);
+                        } else {
+                            setLocalRoomData({id: room._id, name: room.name});
+                        }
+                }
                 setQuestionCounter(0);
-                incrementRoom();
-                setGlobalRoomData([...globalRoomData, localRoomData])
-                setRoomChanged(true);
             }
         } else {
             setQuestionCounter(questionCounter + 1);
@@ -54,15 +77,19 @@ const EpicAuditRoom = ({ unitName, globalRoomData, setGlobalRoomData, room, room
             if (roomCounter === 0) {
                 setQuestionCounter(0);
             } else {
+                let existingPreviousRoom = globalRoomData.filter(f => f.id === rooms[roomCounter - 1]._id);
+                let existingCurrentRoom = globalRoomData.filter(f => f.id === room._id);
+                let currentRoomIsComplete = isRoomComplete(localRoomData);
+                if (currentRoomIsComplete) { // update global current room with local room
+                    updateGlobalRoomData(localRoomData);
+                }
+                if (isRoomComplete(...existingPreviousRoom)) {
+                    setLocalRoomData(...existingPreviousRoom);
+                } else {
+                    setLocalRoomData({id: room._id, name: room.name});
+                }
                 setQuestionCounter(2);
                 decrementRoom();
-                setGlobalRoomData([...globalRoomData, localRoomData]);
-                const prevRoom = rooms[roomCounter - 1];
-                const scopedRoom = globalRoomData.filter(r => r.id === prevRoom._id);
-                setLocalRoomData(...scopedRoom);
-                const remainingRooms = globalRoomData.filter(r => r.id !== prevRoom._id);
-                alert(roomIsComplete(prevRoom));
-                // setGlobalRoomData(remainingRooms);
             }
         } else {
             setQuestionCounter(questionCounter - 1);
@@ -70,13 +97,11 @@ const EpicAuditRoom = ({ unitName, globalRoomData, setGlobalRoomData, room, room
     }
 
     const saveAudit = () => {
-        alert('save audit');
+        alert(JSON.stringify(globalRoomData));
     }
 
     useEffect(() => {
-        if (roomChangedForward) {
-            setLocalRoomData({id: room._id, name: room.name});
-        }
+        setLocalRoomData({...localRoomData, id: room._id, name: room.name});
         setRoomChangedForward(false);
     }, [globalRoomData, roomChangedForward])
 
@@ -99,7 +124,6 @@ const EpicAuditRoom = ({ unitName, globalRoomData, setGlobalRoomData, room, room
                 { questionCounter === 1 ? <LastDocumentedFallRiskAssessment localRoomData={localRoomData} setLocalRoomData={setLocalRoomData} globalRoomData={globalRoomData} setGlobalRoomData={setGlobalRoomData} room={room} fallRiskAssessed={fallRiskAssessed} setFallRiskAssessed={setFallRiskAssessed} /> : '' }
                 { questionCounter === 2 ? <PatientFamilyEducated localRoomData={localRoomData} setLocalRoomData={setLocalRoomData} globalRoomData={globalRoomData} setGlobalRoomData={setGlobalRoomData} room={room} fallRiskAssessed={fallRiskAssessed} setFallRiskAssessed={setFallRiskAssessed} /> : '' }
             </div>
-            {/* <p>Question counter: {questionCounter}</p> */}
             <footer className='stepper-vital-buttons'>
                 <div className='question-stepper-buttons counter-buttons'>
                     <button className='decrement-question' onClick={decrementQuestionCounter}><MdOutlineKeyboardArrowLeft />Previous</button>

@@ -46,14 +46,9 @@ const Home = () => {
     useEffect(() => {
         if (cookies['session'] !== undefined && Object.keys(globalUser).length === 0) {
           refresh();
-        } 
-        // else {
-        //   navigate('/auth')
-        // }
-        else if (cookies['session'] === undefined && Object.keys(globalUser).length === 0) {
+        } else if (cookies['session'] === undefined && Object.keys(globalUser).length === 0) {
             navigate('/auth');
-        }
-        else if (noOrg) {
+        } else if (noOrg) {
           setNoOrg(false);
           navigate('/auth');
         }
