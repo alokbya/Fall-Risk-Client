@@ -16,12 +16,41 @@ const EpicAuditRoom = ({ unitName, globalRoomData, setGlobalRoomData, room, room
     const [ roomChangedForward, setRoomChangedForward ] = useState(false);
     const [ questionCounter, setQuestionCounter ] = useState(0);
 
-    const updateGlobalRoomData = (localRoomData) => {
-        const remainingRooms = globalRoomData.filter(f => f.id !== localRoomData.id);
-        setGlobalRoomData([...remainingRooms, localRoomData]);
+    /*
+        * Add localRoomData to globalRoomData, and replace data if already exists
+    */
+    const updateGlobalRoomData = () => {
+        if (roomExistsInGlobal(localRoomData.id)) {
+            const remainingRooms = globalRoomData.filter(f => f.id !== localRoomData.id);
+            setGlobalRoomData([...remainingRooms, localRoomData]);
+        } else {
+            setGlobalRoomData([...globalRoomData, localRoomData]);
+        }
     }
 
+    /*
+        * Pull out localRoomData from globalRoomData list
+    */
+    const getLocalRoomOrStartNewRoom = (room) => {
+        if (roomExistsInGlobal(room._id)) {
+            const roomInGlobal = globalRoomData.filter(r => r.id === room._id);
+            setLocalRoomData(...roomInGlobal);
+        } else {
+            setLocalRoomData({id: room._id, name: room.name});
+        }
+    }
 
+    /*
+        * Determine if localRoomData for room already exists in globalRoomData
+    */
+    const roomExistsInGlobal = (roomId) => {
+        const globalRoomToReplace = globalRoomData.filter(r => r.id === roomId);
+        return globalRoomToReplace.length > 0;
+    }
+
+    /*
+        * Determine if room in localRoomData is complete and can be added to globalRoomData
+    */
     const isRoomComplete = (room) => {
         const result = room.id !== undefined &&
         room.name !== undefined &&
@@ -33,6 +62,26 @@ const EpicAuditRoom = ({ unitName, globalRoomData, setGlobalRoomData, room, room
         return result;
     }
 
+    /*
+        * Skip current room
+    */
+    const skipQuestion = () => {
+        startNextRoom();
+        setQuestionCounter(0);
+    }
+
+    /*
+        * Process data and go to the next room (forward)
+    */
+    const startNextRoom = () => {
+        const complete = isRoomComplete(localRoomData);
+        if (complete) {
+            updateGlobalRoomData();
+        }
+        incrementRoom();
+        getLocalRoomOrStartNewRoom(rooms[roomCounter + 1]);
+    }
+
     // increment question
     // if user is on the last question
     // check if there are other rooms to go through
@@ -40,27 +89,9 @@ const EpicAuditRoom = ({ unitName, globalRoomData, setGlobalRoomData, room, room
     const incrementQuestionCounter = () => {
         if (questionCounter >= 2) {
             if (roomCounter === rooms.length - 1) {
-                setQuestionCounter(2);
-                if (isRoomComplete(localRoomData)) {
-                    updateGlobalRoomData(localRoomData);
-                }
-            } else {
-                let currentRoomComplete = isRoomComplete(localRoomData);
-                if (currentRoomComplete) {
-                    let globalRoomToReplace = globalRoomData.filter(r => r.id === localRoomData.id);
-                    if (globalRoomToReplace.length > 0) {
-                        updateGlobalRoomData(localRoomData);
-                    } else {
-                        setGlobalRoomData([...globalRoomData, localRoomData]);
-                    }
-                        incrementRoom();
-                        let newRoomInGlobal = globalRoomData.filter(r => r.id === room._id);
-                        if (newRoomInGlobal.length > 0) {
-                            setLocalRoomData(...newRoomInGlobal);
-                        } else {
-                            setLocalRoomData({id: room._id, name: room.name});
-                        }
-                }
+                if (isRoomComplete(localRoomData)) updateGlobalRoomData();
+            } else { // rooms in the middle (not last)
+                startNextRoom();
                 setQuestionCounter(0);
             }
         } else {
@@ -77,17 +108,7 @@ const EpicAuditRoom = ({ unitName, globalRoomData, setGlobalRoomData, room, room
             if (roomCounter === 0) {
                 setQuestionCounter(0);
             } else {
-                let existingPreviousRoom = globalRoomData.filter(f => f.id === rooms[roomCounter - 1]._id);
-                let existingCurrentRoom = globalRoomData.filter(f => f.id === room._id);
-                let currentRoomIsComplete = isRoomComplete(localRoomData);
-                if (currentRoomIsComplete) { // update global current room with local room
-                    updateGlobalRoomData(localRoomData);
-                }
-                if (isRoomComplete(...existingPreviousRoom)) {
-                    setLocalRoomData(...existingPreviousRoom);
-                } else {
-                    setLocalRoomData({id: room._id, name: room.name});
-                }
+                getLocalRoomOrStartNewRoom(rooms[roomCounter - 1]);
                 setQuestionCounter(2);
                 decrementRoom();
             }
@@ -130,6 +151,7 @@ const EpicAuditRoom = ({ unitName, globalRoomData, setGlobalRoomData, room, room
                     <div className='progress-bars'>
                         
                     </div>
+                    <button onClick={skipQuestion}>Skip</button>
                     <button className='increment-question' onClick={incrementQuestionCounter}>Next <MdOutlineKeyboardArrowRight /></button>
                 </div>
                 <button id='save-audit-btn' className='save-audit' onClick={saveAudit}>Save</button>

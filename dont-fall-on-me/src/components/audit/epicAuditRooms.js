@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react'
+import { useCookies } from 'react-cookie';
 import EpicAuditRoom from './epicAuditRoom'
 import { UserContext } from '../../context/global/userState';
 const EpicAuditRooms = ({ rooms }) => {
 
+  const [ cookies, setCookie, removeCookie ] = useCookies(['session']);
   const { globalUser } = useContext(UserContext);
   const [ roomCollection, setRoomCollection ] = useState([]);
   const [ roomCounter, setRoomCounter ] = useState(0);
@@ -25,6 +27,16 @@ const EpicAuditRooms = ({ rooms }) => {
       setRoomCounter(roomCounter - 1);
     }
     // setRoomCounter(roomCounter <= 0 ? roomCounter : roomCounter - 1);
+  }
+
+  const createEpicAudit = async () => {
+    const response = await fetch(`http://localhost:3001/`, {
+            credentials: 'include',
+            headers: {
+            'Content-Type': 'application/json',
+            'Session-Token': cookies['session']
+            }
+        });
   }
 
   useEffect(() => {

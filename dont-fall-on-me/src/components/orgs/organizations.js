@@ -52,7 +52,7 @@ const Organizations = ({setNoOrg, refresh, userLoading}) => {
           <br></br>
           {/* {`${Array.isArray(orgs)}`} */}
           </div>
-          {orgs.length === 0 ? 'NO ORGS' : orgs.map(org => <Organization refresh={refresh} className="organizations add-org" org={org} parentOrgs={orgs} setParentOrgs={setOrgs} />)}
+          {orgs.length === 0 ? <h1 className="no-orgs">No Organizations</h1> : orgs.map(org => <Organization refresh={refresh} className="organizations add-org" org={org} parentOrgs={orgs} setParentOrgs={setOrgs} />)}
             {/* <div className="organizations">
                 <div className="organizations org-header">
                     <span className="organizations org-title">Organizations</span>

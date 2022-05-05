@@ -24,3 +24,8 @@
     width: 200px;
     height: 70px;
 }
+
+.no-orgs{
+    display: flex;
+    margin: 0px auto;
+}
