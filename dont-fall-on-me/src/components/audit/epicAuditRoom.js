@@ -139,9 +139,9 @@ const EpicAuditRoom = ({ unitName, globalRoomData, setGlobalRoomData, room, room
             </div>
             <br></br>
             <div className='audit-questions'>
-                { questionCounter === 0 ? <FallRiskAssessed localRoomData={localRoomData} setLocalRoomData={setLocalRoomData} globalRoomData={globalRoomData} setGlobalRoomData={setGlobalRoomData} room={room} fallRiskAssessed={fallRiskAssessed} setFallRiskAssessed={setFallRiskAssessed} /> : '' }
-                { questionCounter === 1 ? <LastDocumentedFallRiskAssessment localRoomData={localRoomData} setLocalRoomData={setLocalRoomData} globalRoomData={globalRoomData} setGlobalRoomData={setGlobalRoomData} room={room} fallRiskAssessed={fallRiskAssessed} setFallRiskAssessed={setFallRiskAssessed} /> : '' }
-                { questionCounter === 2 ? <PatientFamilyEducated localRoomData={localRoomData} setLocalRoomData={setLocalRoomData} globalRoomData={globalRoomData} setGlobalRoomData={setGlobalRoomData} room={room} fallRiskAssessed={fallRiskAssessed} setFallRiskAssessed={setFallRiskAssessed} /> : '' }
+                { questionCounter === 0 ? <FallRiskAssessed localRoomData={localRoomData} setLocalRoomData={setLocalRoomData} /> : '' }
+                { questionCounter === 1 ? <LastDocumentedFallRiskAssessment localRoomData={localRoomData} setLocalRoomData={setLocalRoomData} /> : '' }
+                { questionCounter === 2 ? <PatientFamilyEducated localRoomData={localRoomData} setLocalRoomData={setLocalRoomData} /> : '' }
             </div>
             <footer className='stepper-vital-buttons'>
                 <div className='question-stepper-buttons counter-buttons'>

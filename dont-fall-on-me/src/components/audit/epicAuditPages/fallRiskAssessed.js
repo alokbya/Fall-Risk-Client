@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 import '../../../styles/audit/auditPages/epicPages/fallRiskAssessed.css';
 
-const FallRiskAssessed = ({ localRoomData, setLocalRoomData, globalRoomData, setGlobalRoomData, room}) => {
+const FallRiskAssessed = ({ localRoomData, setLocalRoomData }) => {
     useEffect(() => {
         if (localRoomData.fallRiskAssessed === 'true') { 
             document.getElementById('fra-yes').checked = true; 

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import '../../../styles/audit/auditPages/epicPages/patientFamilyEducated.css';
 
-const PatientFamilyEducated = ({ localRoomData, setLocalRoomData, globalRoomData, setGlobalRoomData, room}) => {
+const PatientFamilyEducated = ({ localRoomData, setLocalRoomData }) => {
   useEffect(() => {
     if (!!localRoomData.patientFamilyEducated === true) { 
       document.getElementById('fra-pfe-yes').checked = true; 

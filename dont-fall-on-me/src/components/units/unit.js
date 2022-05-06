@@ -23,7 +23,7 @@ const Unit = ({ unit }) => {
   const performRoomAudit = () => {
     updateUnit(unit);
     updateAuditType('room');
-    alert('perform room audit');
+    navigate('/record');
   }
 
   const viewUnitData = () => {
@@ -42,7 +42,7 @@ const Unit = ({ unit }) => {
           {/* <span className='unit-id'>{unit._id}</span> */}
           {viewControls ? <div className='unit-controls'>
             <button className='unit-control epic-audit' onClick={performEpicAudit}>Epic Audit</button>
-            <button className='unit-control room-audit'>Room Audit</button>
+            <button className='unit-control room-audit' onClick={performRoomAudit}>Room Audit</button>
             <button className='unit-control view-data'>View Data</button>
           </div> : ''}
       </div>
