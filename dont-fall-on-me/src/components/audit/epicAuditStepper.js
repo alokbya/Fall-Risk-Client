@@ -17,13 +17,6 @@ const EpicAuditStepper = ({ rooms }) => {
         setRoomCounter(roomCounter <= 0 ? roomCounter : roomCounter - 1);
     }
 
-    const pages = [
-      'name',
-      'fallRiskAssessed',
-      'lasDocumentedFallRiskAssessment',
-      'patientFamilyEducated'
-    ];
-
     useEffect(() => {
         
     }, [rooms]);

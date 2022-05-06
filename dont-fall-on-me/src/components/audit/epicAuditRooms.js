@@ -17,7 +17,6 @@ const EpicAuditRooms = ({ rooms }) => {
     } else {
       setRoomCounter(roomCounter + 1);
     }
-    // setRoomCounter(roomCounter >= roomCollection.length - 1 ? roomCounter : roomCounter + 1);
   }
 
   const decrementRoom = () => {
@@ -26,7 +25,6 @@ const EpicAuditRooms = ({ rooms }) => {
     } else {
       setRoomCounter(roomCounter - 1);
     }
-    // setRoomCounter(roomCounter <= 0 ? roomCounter : roomCounter - 1);
   }
 
   const createEpicAudit = async () => {
@@ -61,7 +59,17 @@ const EpicAuditRooms = ({ rooms }) => {
           {Object.keys(globalRoomData).length === 0 ? 'NOTHING' : `GLOBAL: ${JSON.stringify(globalRoomData)}`}
           <br></br>
           <br></br>
-            {roomCollection.length > 0 ? <EpicAuditRoom unitName={globalUser.unit.name} globalRoomData={globalRoomData} setGlobalRoomData={setGlobalRoomData} room={roomCollection[roomCounter]} rooms={rooms} roomCounter={roomCounter} incrementRoom={incrementRoom} decrementRoom={decrementRoom} setRoomsTracker={setRoomsTracker} roomsTracker={roomsTracker} /> : ''}
+          {roomCollection.length > 0 ? <EpicAuditRoom 
+          unitName={globalUser.unit.name} 
+          globalRoomData={globalRoomData} 
+          setGlobalRoomData={setGlobalRoomData} 
+          room={roomCollection[roomCounter]} 
+          rooms={rooms} 
+          roomCounter={roomCounter} 
+          incrementRoom={incrementRoom} 
+          decrementRoom={decrementRoom} 
+          setRoomsTracker={setRoomsTracker} 
+          roomsTracker={roomsTracker} /> : ''}
         </div>
       </>
   )

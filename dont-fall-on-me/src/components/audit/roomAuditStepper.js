@@ -28,20 +28,6 @@ const RoomAuditStepper = () => {
 
   const [ currentPage, setCurrentPage ] = useState(0);
 
-  const pages = [
-    'name',
-    'fallRiskAssessed',
-    'lasDocumentedFallRiskAssessment',
-    'patientFamilyEducated',
-    'doorJamMarker',
-    'whiteboardAdjusted',
-    'yellowSocksOrShoes',
-    'threeSideRails',
-    'chairAlarmOnZeroSeconds',
-    'threeCordsForChairAlarm',
-    'bedAlarm'
-  ]
-
   const returnHome = () => {
     navigate('/unit');
   }

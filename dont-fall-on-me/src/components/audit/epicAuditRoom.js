@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import QuestionName from './auditPages/questionName';
 import FallRiskAssessed from './epicAuditPages/fallRiskAssessed';
 import LastDocumentedFallRiskAssessment from './epicAuditPages/lastDocumentedFallRiskAssessment';
 import PatientFamilyEducated from './epicAuditPages/patientFamilyEducated';
@@ -8,11 +7,10 @@ import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-i
 import '../../styles/audit/epicAuditRoom.css';
 import { ProgressBar } from 'react-bootstrap';
 
-const EpicAuditRoom = ({ unitName, globalRoomData, setGlobalRoomData, room, rooms, roomCounter, incrementRoom, decrementRoom, setRoomsTracker, roomsTracker }) => {
+const EpicAuditRoom = ({ unitName, globalRoomData, setGlobalRoomData, room, rooms, roomCounter, incrementRoom, decrementRoom }) => {
   
     const [ fallRiskAssessed, setFallRiskAssessed ] = useState({});
     const [ localRoomData, setLocalRoomData ] = useState({});
-    const [ roomChanged, setRoomChanged ] = useState(false);
     const [ roomChangedForward, setRoomChangedForward ] = useState(false);
     const [ questionCounter, setQuestionCounter ] = useState(0);
 
